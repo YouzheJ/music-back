@@ -5,3 +5,5 @@
 
 > 使用 react-create-app 搭项目， 搭配vscode的Easy Sass插件，实现样式和js的热加载
 
+> 使用styled-components对样式进行组件化
+
