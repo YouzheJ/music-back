@@ -47,6 +47,8 @@ const StyleLink = styled(Link)`
   color: #fff;
   font-weight: blod;
   text-decoration: none;
+  width: 100%;
+  text-align: center;
 `
 
 class App extends Component {
@@ -59,7 +61,9 @@ class App extends Component {
   componentWillMount() {
     fetchs({url: `/music/list`}).then((res) => {
       console.log(res)
-      this.setState({list: res.data});
+      if(res) {
+        this.setState({list: res.data});
+      }
     });
   }
   render() {
@@ -67,7 +71,7 @@ class App extends Component {
     return (
       <StyleApp>
         <Header>
-          列表
+          列表页
         </Header>
         <StyleBody>
           <p>home page</p>
