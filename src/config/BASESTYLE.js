@@ -3,6 +3,7 @@
 export default {
   // color
   bg: '#FFF',
+  bg1: '#EEEEEE',
   bg2: '#E9ECF3',
   bg3: '#F3F4F6',
   bg4: '#F2F6F9',

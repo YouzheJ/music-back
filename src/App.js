@@ -29,6 +29,7 @@ const Mask = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
+  top: 0;
   background: ${BS.mask};
   z-index: 100;
 `
@@ -39,6 +40,7 @@ const Center_box = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `
 
 const Center = styled.div`
@@ -55,6 +57,7 @@ const Title = styled.div`
   font-size: 52px;
   width: 100%;
   text-shadow: 0 0 5px rgba(0,0,0,0.3);
+  padding-right: 22px;
 `
 
 const Button_group = styled.div`
@@ -143,7 +146,7 @@ class App extends Component {
           <Header title={true} home={true}></Header>
           <Center_box>
             <Center>
-              <Title>YOUZHE &nbsp;&nbsp; MUSIC</Title>
+              <Title>YOUZHE&nbsp;&nbsp;MUSIC</Title>
               <Button_group>
                 <Button_l><StyleLink to={'/list'}>列表</StyleLink></Button_l>
                 <Button_r><StyleLink to={'/add'}>添加</StyleLink></Button_r>

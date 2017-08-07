@@ -18,7 +18,7 @@ const Body = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  background: ${BS.bg4};
+  background: ${BS.bg1};
 `
 
 const Title = styled.div`
@@ -31,10 +31,16 @@ const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  background: #fefefe;
+  background: #F9F9F9;
   min-height: 500px;
   padding: 10px 0;
   margin: 0 50px;
+`
+
+const Block = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #fff;
 `
 
 const Item = styled.div`
@@ -51,6 +57,7 @@ const Span = styled.span`
 
 const StyleInput = styled(Input)`
   width: 250px;
+  background: #fefefe;
 `
 
 /*{
@@ -87,26 +94,28 @@ class Add extends Component {
         <Body>
           <Title>{type == 'add' ? 'ADD' : 'EDIT'} MUSIC</Title>
           <Content>
-            <Item>
-              <Span>NAME: </Span>
-              <StyleInput/>
-            </Item>
-            <Item>
-              <Span>NAME: </Span>
-              <StyleInput/>
-            </Item>
-            <Item>
-              <Span>NAME: </Span>
-              <StyleInput/>
-            </Item>
-            <Item>
-              <Span>NAME: </Span>
-              <StyleInput/>
-            </Item>
-            <Item>
-              <Span>NAME: </Span>
-              <StyleInput/>
-            </Item>
+            <Block>
+              <Item>
+                <Span>NAME: </Span>
+                <StyleInput/>
+              </Item>
+              <Item>
+                <Span>ALIAS: </Span>
+                <StyleInput/>
+              </Item>
+              <Item>
+                <Span>PUBLISH: </Span>
+                <StyleInput/>
+              </Item>
+              <Item>
+                <Span>IMAGES: </Span>
+                <StyleInput/>
+              </Item>
+              <Item>
+                <Span>SOURCE: </Span>
+                <StyleInput/>
+              </Item>
+            </Block>
           </Content>
         </Body>
       </StyleAdd>
