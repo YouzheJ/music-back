@@ -45,3 +45,19 @@ export const StyleLink = styled(Link)`
   width: 100%;
   text-align: center;
 `
+
+export const Input = styled.input`
+  padding: 0 0 0 10px;
+  margin: 0;
+  width: 150px;
+  height: 30px;
+  font-size: 16px;
+  color: ${BS.font_s};
+  border: 1px solid ${BS.border};
+  outline: 0;
+  transition: outline 0.3s linear;
+
+  &: focus {
+    outline: ${BS.blue_s} outset thin;
+  }
+`

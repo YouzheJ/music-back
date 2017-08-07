@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-// import { Link } from 'react-router'
-
-// import logo from './logo.svg';
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Button, StyleLink } from './styled'
 import BS from './config/BASESTYLE'
-import './styles/App.css';
+import Header from './Header'
+
+// import logo from './logo.svg';
+import './styles/App.css'
 
 const StyleApp = styled.div`
   overflow: hidden;
@@ -33,34 +33,6 @@ const Mask = styled.div`
   z-index: 100;
 `
 
-const Header = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  height: 40px;
-  width: 100%;
-  color: #fff;
-  z-index: 1000;
-`
-
-const List = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 30px;
-`
-
-const Item = styled.div`
-  width: 100px;
-  height: 30px;
-  line-height: 30px;
-  font-size: 18px;
-  transition: color 0.2s linear;
-  cursor: pointer;
-
-  &: hover {
-    color: ${BS.blue_d_hover};
-  }
-`
-
 const Center_box = styled.div`
   display: flex;
   flex: 1;
@@ -80,7 +52,7 @@ const Center = styled.div`
 
 const Title = styled.div`
   color:#333;
-  font-size: 32px;
+  font-size: 52px;
   width: 100%;
   text-shadow: 0 0 5px rgba(0,0,0,0.3);
 `
@@ -92,7 +64,7 @@ const Button_group = styled.div`
   align-items: center;
 `
 
-const Button_b = Button.extend`
+const Button_r = Button.extend`
   background: ${BS.blue_d};
   z-index: 1000;
   margin-left: 50px;
@@ -103,7 +75,7 @@ const Button_b = Button.extend`
   }
 `
 
-const Button_g = Button.extend`
+const Button_l = Button.extend`
   background: ${BS.green_d};
   z-index: 1000;
   transition: background 0.2s linear;
@@ -115,6 +87,7 @@ const Button_g = Button.extend`
 
 class App extends Component {
   componentDidMount() {
+    // 代码来自 https://zhuanlan.zhihu.com/p/28257724
     document.addEventListener('touchmove', function (e) {
         e.preventDefault()
     })
@@ -167,20 +140,13 @@ class App extends Component {
         <canvas id="tri-curve"></canvas>
         <Content>
           <Mask></Mask>
-          <Header>
-            <List>
-              <Item><StyleLink to={'/list'}>list</StyleLink></Item>
-              <Item><StyleLink to={'/add'}>add</StyleLink></Item>
-              <Item><StyleLink to={'/play'} query={{name: ''}}>play</StyleLink></Item>
-              <Item><StyleLink to={'/help'}>help</StyleLink></Item>
-            </List>
-          </Header>
+          <Header title={true} home={true}></Header>
           <Center_box>
             <Center>
-              <Title>YOUZHEJ</Title>
+              <Title>YOUZHE &nbsp;&nbsp; MUSIC</Title>
               <Button_group>
-                <Button_g><StyleLink to={'/list'}>列表</StyleLink></Button_g>
-                <Button_b><StyleLink to={'/play'} query={{name: ''}}>播放</StyleLink></Button_b>
+                <Button_l><StyleLink to={'/list'}>列表</StyleLink></Button_l>
+                <Button_r><StyleLink to={'/add'}>添加</StyleLink></Button_r>
               </Button_group>
             </Center>
           </Center_box>

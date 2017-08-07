@@ -8,6 +8,7 @@ export default {
   bg4: '#F2F6F9',
   border: '#E7ECF1',
   mask: 'rgba(0,0,0,0.4)',
+  gray: '#758589',
   gray_d: '#BAC3D0',
   gray_s: '#A7BDCD',
   green_d: '#5EB95E',
@@ -22,4 +23,6 @@ export default {
   blue_d: '#3BB4F2',
   blue_d_hover: '#19a7f0',
   blue_s: '#36C6D3',
+  font_m: '#333',
+  font_s: '#666',
 }

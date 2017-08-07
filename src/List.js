@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-// import { Link } from 'react-router'
-
-// import logo from './logo.svg';
-import './styles/App.css';
+import React, { Component } from 'react'
 import fetchs from './scripts/fetchs'
 import styled from 'styled-components'
 import { Ul, Li, ButtonFull, StyleLink } from './styled'
 
 import BS from './config/BASESTYLE'
 import BD from './config/BASEDATA'
+
+// import logo from './logo.svg'
+import './styles/App.css'
 
 const AppBox = ({className, children}) => (<div className={className}>{children}</div>);
 

@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/index.css';
-import App from './App';
-import List from './List';
-import Add from './Add';
-import { Router, Route, hashHistory } from 'react-router'
-import registerServiceWorker from './registerServiceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './styles/index.css'
+import App from './App'
+import List from './List'
+import Add from './Add'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+import registerServiceWorker from './registerServiceWorker'
 import 'whatwg-fetch' // 兼容fetch
 
 ReactDOM.render(
   <Router history={hashHistory}>
+    <IndexRoute component={App}/>
     <Route path="/" component={App}/>
     <Route path="/list" component={List}/>
     <Route path="/add" component={Add}/>
