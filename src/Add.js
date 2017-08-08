@@ -34,8 +34,28 @@ const Content = styled.div`
   align-content: flex-start;
   background: #F9F9F9;
   min-height: 500px;
-  padding: 10px 0;
-  margin: 0 50px;
+  padding: 10px 30px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 800px) {
+    max-width: 500px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    max-width: 600px;
+  }
+
+  @media screen and (min-width: 1000px) {
+    min-width: 800px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    min-width: 1000px;
+  }
+
+  @media screen and (min-width: 1600px) {
+    min-width: 1400px;
+  }
 `
 
 const Block = styled.div`
@@ -68,6 +88,41 @@ const Span = styled.span`
 const StyleInput = styled(Input)`
   width: 250px;
   background: #fefefe;
+`
+
+const AddButton = styled.span`
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid ${BS.gray_s};
+  border-radius: 50%;
+  color: ${BS.gray_s};
+  cursor: pointer;
+  transition: all 1s ease;
+
+  &: hover {
+    transform: rotate(360deg) scale(1.2, 1.2);
+    border-color: ${BS.blue_d_hover};
+    color: ${BS.blue_d_hover};
+  }
+`
+
+const MoreButton = AddButton.extend``
+
+const UploadButton = AddButton.extend`
+  margin: 30px auto 20px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 0;
+  transform: scale(2, 2);
+
+  &: hover {
+    transform:scale(2, 2);
+  }
 `
 
 /*{
@@ -112,7 +167,10 @@ class Add extends Component {
               </Item>
               <Item>
                 <Span>ALIAS: </Span>
-                <StyleInput/>
+                <AddButton>
+                  <i className="icon iconfont icon-add"></i>
+                </AddButton>
+                {/* <StyleInput/> */}
               </Item>
               <Item>
                 <Span>PUBLISH: </Span>
@@ -120,35 +178,44 @@ class Add extends Component {
               </Item>
               <Item>
                 <Span>IMAGES: </Span>
-                <StyleInput/>
+                <MoreButton>
+                  <i className="icon iconfont icon-more"></i>
+                </MoreButton>
+                {/* <StyleInput/> */}
               </Item>
               <Item>
                 <Span>SOURCE: </Span>
-                <StyleInput/>
+                <MoreButton>
+                  <i className="icon iconfont icon-more"></i>
+                </MoreButton>
+                {/* <StyleInput/> */}
               </Item>
             </Block>
             <Block>
-              <SubTitle>BASE INFO</SubTitle>
+              <SubTitle>IMAGES</SubTitle>
               <Item>
-                <Span>NAME: </Span>
-                <i className="icon iconfont icon-back"></i>
-                <StyleInput/>
+                <Span>COVER L: </Span>
+                <UploadButton>
+                  <i className="icon iconfont icon-upload"></i>
+                </UploadButton>
+                {/* <StyleInput/> */}
               </Item>
               <Item>
-                <Span>ALIAS: </Span>
-                <StyleInput/>
+                <Span>COVER S: </Span>
+                <UploadButton>
+                  <i className="icon iconfont icon-upload"></i>
+                </UploadButton>  
+                {/* <StyleInput/> */}
               </Item>
+            </Block>
+            <Block>
+              <SubTitle>SOURCE</SubTitle>
               <Item>
-                <Span>PUBLISH: </Span>
-                <StyleInput/>
-              </Item>
-              <Item>
-                <Span>IMAGES: </Span>
-                <StyleInput/>
-              </Item>
-              <Item>
-                <Span>SOURCE: </Span>
-                <StyleInput/>
+                <Span>QUALITY: </Span>
+                <AddButton>
+                  <i className="icon iconfont icon-add"></i>
+                </AddButton>
+                {/* <StyleInput/> */}
               </Item>
             </Block>
           </Content>
