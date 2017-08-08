@@ -131,6 +131,7 @@ class Add extends Component {
               <SubTitle>BASE INFO</SubTitle>
               <Item>
                 <Span>NAME: </Span>
+                <i className="icon iconfont icon-back"></i>
                 <StyleInput/>
               </Item>
               <Item>

@@ -8,6 +8,8 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import registerServiceWorker from './registerServiceWorker'
 import 'whatwg-fetch' // 兼容fetch
 
+import './styles/iconfont/iconfont.css'
+
 ReactDOM.render(
   <Router history={hashHistory}>
     <IndexRoute component={App}/>
