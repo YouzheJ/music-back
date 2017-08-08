@@ -30,6 +30,7 @@ const Title = styled.div`
 const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   align-content: flex-start;
   background: #F9F9F9;
   min-height: 500px;
@@ -41,10 +42,19 @@ const Block = styled.div`
   display: flex;
   flex-direction: column;
   background: #fff;
+  margin: 10px;
 `
 
 const Item = styled.div`
   padding: 10px 20px;
+`
+
+const SubTitle = styled.div`
+  font-size: 18px;
+  color: ${BS.orange_d};
+  border-bottom: 1px solid #f80;
+  padding: 10px 0;
+  margin: 0 20px 10px;
 `
 
 const Span = styled.span`
@@ -95,6 +105,30 @@ class Add extends Component {
           <Title>{type == 'add' ? 'ADD' : 'EDIT'} MUSIC</Title>
           <Content>
             <Block>
+              <SubTitle>BASE INFO</SubTitle>
+              <Item>
+                <Span>NAME: </Span>
+                <StyleInput/>
+              </Item>
+              <Item>
+                <Span>ALIAS: </Span>
+                <StyleInput/>
+              </Item>
+              <Item>
+                <Span>PUBLISH: </Span>
+                <StyleInput/>
+              </Item>
+              <Item>
+                <Span>IMAGES: </Span>
+                <StyleInput/>
+              </Item>
+              <Item>
+                <Span>SOURCE: </Span>
+                <StyleInput/>
+              </Item>
+            </Block>
+            <Block>
+              <SubTitle>BASE INFO</SubTitle>
               <Item>
                 <Span>NAME: </Span>
                 <StyleInput/>
