@@ -1,4 +1,5 @@
 // 公用样式的组件
+import React from 'react'
 import styled from 'styled-components'
 import BS from './config/BASESTYLE'
 import { Link } from 'react-router'
@@ -26,11 +27,19 @@ export const Button = styled.div`
   align-items: center;
   width: 120px;
   height: 40px;
+  line-height: 40px;
+  text-align: center;
   border-radius: 5px;
   background: ${BS.bg3};
   color: #fff;
   cursor: pointer;
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s linear;
+
+  &: hover {
+    background: ${BS.bg2};
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+  }
 `
 
 export const ButtonFull = Button.extend`
@@ -57,7 +66,10 @@ export const Input = styled.input`
   outline: 0;
   transition: outline 0.3s linear;
 
-  &: focus {
+  &: focus, &: hover {
     outline: ${BS.blue_s} outset thin;
   }
 `
+
+export let Icon = (props) => 
+  (<i className={`icon iconfont ${props.name}`}></i>)
