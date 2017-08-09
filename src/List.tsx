@@ -8,9 +8,9 @@ import BS from './config/BASESTYLE'
 // import logo from './logo.svg'
 import './styles/App.css'
 
-const AppBox = ({className, children}) => (<div className={className}>{children}</div>);
+// const AppBox = ({className, children}) => (<div className={className}>{children}</div>);
 
-const StyleApp = styled(AppBox)`
+const StyleApp = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

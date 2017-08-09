@@ -88,7 +88,7 @@ const Button_l = Button.extend`
   }
 `
 
-class App extends React.Component {
+class App extends React.Component<any, any> {
   componentDidMount() {
     // 代码来自 https://zhuanlan.zhihu.com/p/28257724
     document.addEventListener('touchmove', function (e) {

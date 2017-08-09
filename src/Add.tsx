@@ -203,6 +203,12 @@ interface State {
   show: object;
 }
 
+declare module JSX {  
+  interface ElementAttributesProperty {
+    props; // 指定使用哪个属性名称
+  }
+}
+
 class Add extends React.Component<Props, State> {
   public state: State;  
   constructor(props: Props) {

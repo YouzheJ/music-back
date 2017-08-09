@@ -66,7 +66,7 @@ interface Props {
   name: boolean;
 }
 
-const Header = (props: Props) : JSX.Element => {
+const Header = (props: Props) => {
   const { title, home, list, add, play, help, name } = props; // 值为true时不显示(name除外)
   return (
       <StyleHeader home={home}>
