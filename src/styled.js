@@ -31,14 +31,14 @@ export const Button = styled.div`
   text-align: center;
   border-radius: 5px;
   background: ${BS.bg3};
-  color: #fff;
+  color: ${BS.font_s};
   cursor: pointer;
-  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 5px 10px ${BS.shadow};
   transition: all 0.3s linear;
 
   &: hover {
     background: ${BS.bg2};
-    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 10px 20px ${BS.shadow};
   }
 `
 

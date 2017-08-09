@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Button, StyleLink, Input, Icon } from './styled'
 import BS from './config/BASESTYLE'
 import Header from './Header'
+import Footer from './Footer'
 
 // import logo from './logo.svg'
 import './styles/App.css'
@@ -45,26 +47,21 @@ const Content = styled.div`
     max-width: 500px;
   justify-content: space-around;
   }
-
   @media screen and (max-width: 1000px) {
     max-width: 600px;
   justify-content: space-around;
   }
-
-  @media screen and (min-width: 1000px) {
-    // min-width: 800px;
+  @media screen and (max-width: 1200px) {
+      max-width: 700px;
   }
-
-  @media screen and (min-width: 1200px) {
-    // min-width: 1000px;
-  }
-
-  @media screen and (min-width: 1600px) {
-    // min-width: 1400px;
+  @media screen and (min-width: 1800px) {
+      min-width: 80%;
   }
 `
 
-const ContentBox = styled.div``
+const ContentBox = styled.div`
+  flex: 1;
+`
 
 const Block = styled.div`
   display: flex;
@@ -105,7 +102,7 @@ const AddButton = styled.span`
   height: 30px;
   line-height: 30px;
   text-align: center;
-  border: 1px solid ${BS.gray_s};
+  border: 1px solid ${BS.border_s};
   border-radius: 50%;
   color: ${BS.gray_s};
   cursor: pointer;
@@ -113,8 +110,9 @@ const AddButton = styled.span`
 
   &: hover {
     transform: rotate(360deg) scale(1.2, 1.2);
-    border-color: ${BS.blue_d_hover};
     color: ${BS.blue_d_hover};
+    border-color: #fff;
+    box-shadow: 0 0 5px ${BS.shadow};
   }
 `
 
@@ -127,10 +125,15 @@ const UploadButton = AddButton.extend`
   height: 40px;
   line-height: 40px;
   border-radius: 0;
+  transition: all 1s ease;
+  border-radius: 2px;
+  border-color: ${BS.border_s};
   transform: scale(2, 2);
 
   &: hover {
     transform:scale(2, 2);
+    border-color: #fff;
+    box-shadow: 4px 6px 10px ${BS.shadow};
   }
 `
 
@@ -144,6 +147,7 @@ const UploadButton_s = UploadButton.extend`
 `
 
 const Button_s = Button.extend`
+  color: #fff;
   background: ${BS.blue_d};
 
   &: hover {
@@ -151,14 +155,7 @@ const Button_s = Button.extend`
   }
 `
 
-const Button_c = Button.extend`
-  color: ${BS.font_s};
-  // background: ${BS.red_d};
-
-  // &: hover {
-  //   background: ${BS.red_d_hover};
-  // }
-`
+const Button_c = Button.extend``
 
 const ButtonGroup = Item.extend`
   display: flex;
@@ -202,7 +199,12 @@ class Add extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      type: 'add'
+      type: 'add',
+      show: { // 部分颜色的显示隐藏
+        images: false,
+        sources: false,
+        detail: false,
+      },
     }
   }
   render() {
@@ -314,9 +316,14 @@ class Add extends Component {
             </ButtonGroup_bottom> 
           </Bottom>
         </Body>
+        <Footer></Footer>
       </StyleAdd>
     );
   }
+}
+
+Add.PropTypes = {
+  show: PropTypes.object,
 }
 
 export default Add;

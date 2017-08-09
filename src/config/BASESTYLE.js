@@ -8,7 +8,9 @@ export default {
   bg3: '#F3F4F6',
   bg4: '#F2F6F9',
   border: '#E7ECF1',
+  border_s: '#eee',
   mask: 'rgba(0,0,0,0.4)',
+  shadow: 'rgba(0, 0, 0, 0.2)',
   gray: '#758589',
   gray_d: '#BAC3D0',
   gray_s: '#A7BDCD',
@@ -26,4 +28,5 @@ export default {
   blue_s: '#36C6D3',
   font_m: '#333',
   font_s: '#666',
+  font_ss: '#aaa',
 }
