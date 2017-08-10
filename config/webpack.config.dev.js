@@ -7,7 +7,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
@@ -67,9 +66,9 @@ module.exports = {
     chunkFilename: 'static/js/[name].chunk.js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath,
-    // Point sourcemap entries to original disk location (format as URL on Windows)
+    // Point sourcemap entries to original disk location
     devtoolModuleFilenameTemplate: info =>
-      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+      path.resolve(info.absoluteResourcePath),
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -84,9 +83,7 @@ module.exports = {
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
-    // `web` extension prefixes have been added for better support
-    // for React Native Web.
-    extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.ts', '.tsx', '.js', '.json', '.jsx'],
     alias: {
       
       // Support React Native Web
@@ -112,17 +109,15 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
+        loader: require.resolve('tslint-loader'),
         enforce: 'pre',
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              
-            },
-            loader: require.resolve('eslint-loader'),
-          },
-        ],
+        include: paths.appSrc,
+      },
+      {
+        test: /\.js$/,
+        loader: require.resolve('source-map-loader'),
+        enforce: 'pre',
         include: paths.appSrc,
       },
       // ** ADDING/UPDATING LOADERS **
@@ -137,7 +132,14 @@ module.exports = {
       {
         exclude: [
           /\.html$/,
-          /\.(js|jsx)$/,
+          // We have to write /\.(js|jsx)(\?.*)?$/ rather than just /\.(js|jsx)$/
+          // because you might change the hot reloading server from the custom one
+          // to Webpack's built-in webpack-dev-server/client?/, which would not
+          // get properly excluded by /\.(js|jsx)$/ because of the query string.
+          // Webpack 2 fixes this, but for now we include this hack.
+          // https://github.com/facebookincubator/create-react-app/issues/1713
+          /\.(js|jsx)(\?.*)?$/,
+          /\.(ts|tsx)(\?.*)?$/,
           /\.css$/,
           /\.json$/,
           /\.bmp$/,
@@ -161,18 +163,11 @@ module.exports = {
           name: 'static/media/[name].[hash:8].[ext]',
         },
       },
-      // Process JS with Babel.
+      // Compile .tsx?
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         include: paths.appSrc,
-        loader: require.resolve('babel-loader'),
-        options: {
-          
-          // This is a feature of `babel-loader` for webpack (not Babel itself).
-          // It enables caching results in ./node_modules/.cache/babel-loader/
-          // directory for faster rebuilds.
-          cacheDirectory: true,
-        },
+        loader: require.resolve('ts-loader'),
       },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -192,9 +187,7 @@ module.exports = {
           {
             loader: require.resolve('postcss-loader'),
             options: {
-              // Necessary for external CSS imports to work
-              // https://github.com/facebookincubator/create-react-app/issues/2677
-              ident: 'postcss',
+              ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
               plugins: () => [
                 require('postcss-flexbugs-fixes'),
                 autoprefixer({
@@ -212,7 +205,7 @@ module.exports = {
         ],
       },
       // ** STOP ** Are you adding a new loader?
-      // Remember to add the new extension(s) to the "file" loader exclusion list.
+      // Remember to add the new extension(s) to the "url" loader exclusion list.
     ],
   },
   plugins: [
@@ -226,8 +219,6 @@ module.exports = {
       inject: true,
       template: paths.appHtml,
     }),
-    // Add module names to factory functions so they appear in browser profiler.
-    new webpack.NamedModulesPlugin(),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin(env.stringified),
@@ -252,7 +243,6 @@ module.exports = {
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
-    dgram: 'empty',
     fs: 'empty',
     net: 'empty',
     tls: 'empty',

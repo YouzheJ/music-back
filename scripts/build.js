@@ -71,6 +71,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
       }
 
       console.log('File sizes after gzip:\n');
+<<<<<<< HEAD
       printFileSizesAfterBuild(
         stats,
         previousFileSizes,
@@ -78,6 +79,9 @@ measureFileSizesBeforeBuild(paths.appBuild)
         WARN_AFTER_BUNDLE_GZIP_SIZE,
         WARN_AFTER_CHUNK_GZIP_SIZE
       );
+=======
+      printFileSizesAfterBuild(stats, previousFileSizes);
+>>>>>>> 3170e5605dc78dbf3bf6637814d751ce4470b8a0
       console.log();
 
       const appPackage = require(paths.appPackageJson);
@@ -113,12 +117,16 @@ function build(previousFileSizes) {
       if (messages.errors.length) {
         return reject(new Error(messages.errors.join('\n\n')));
       }
+<<<<<<< HEAD
       if (
         process.env.CI &&
         (typeof process.env.CI !== 'string' ||
           process.env.CI.toLowerCase() !== 'false') &&
         messages.warnings.length
       ) {
+=======
+      if (process.env.CI && messages.warnings.length) {
+>>>>>>> 3170e5605dc78dbf3bf6637814d751ce4470b8a0
         console.log(
           chalk.yellow(
             '\nTreating warnings as errors because process.env.CI = true.\n' +
