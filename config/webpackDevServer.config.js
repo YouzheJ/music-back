@@ -26,13 +26,8 @@ module.exports = function(proxy, allowedHost) {
     // So we will disable the host check normally, but enable it if you have
     // specified the `proxy` setting. Finally, we let you override it if you
     // really know what you're doing with a special environment variable.
-<<<<<<< HEAD
-    disableHostCheck:
-      !proxy || process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true',
-=======
     disableHostCheck: !proxy ||
       process.env.DANGEROUSLY_DISABLE_HOST_CHECK === 'true',
->>>>>>> 3170e5605dc78dbf3bf6637814d751ce4470b8a0
     // Enable gzip compression of generated files.
     compress: true,
     // Silence WebpackDevServer's own logs since they're generally not useful.
