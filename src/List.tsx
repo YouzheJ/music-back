@@ -1,12 +1,12 @@
-import * as React from 'react'
-import fetchs from './scripts/fetchs'
-import styled from 'styled-components'
-import { Ul, Li, ButtonFull, StyleLink } from './styled'
+import * as React from 'react';
+import fetchs from './scripts/fetchs';
+import styled from 'styled-components';
+import { Ul, Li, ButtonFull, StyleLink } from './styled';
 
-import BS from './config/BASESTYLE'
+import BS from './config/BASESTYLE';
 
 // import logo from './logo.svg'
-import './styles/App.css'
+import './styles/App.css';
 
 // const AppBox = ({className, children}) => (<div className={className}>{children}</div>);
 
@@ -15,7 +15,7 @@ const StyleApp = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   height: 100%;
-`
+`;
 
 const Header = styled.div`
   display: flex;
@@ -25,12 +25,12 @@ const Header = styled.div`
   height: 50px;
   padding: 0 30px;
   width: 100%;
-`
+`;
 
 const StyleBody = styled.div`
   display: flex;
   width: 100%;
-`
+`;
 
 const Bottom = styled.div`
   display: flex;
@@ -39,7 +39,7 @@ const Bottom = styled.div`
   justify-content: center;
   margin-bottom: 50px;
   cursor: pointer;
-`
+`;
 
 interface Props {
 
@@ -56,15 +56,15 @@ interface Item {
 class List extends React.Component<Props, State> {
   public state: State;
   constructor(props: Props) {
-    super(props)
+    super(props);
     this.state = {
       list: []
-    }
+    };
   }
   componentWillMount() {
     fetchs({url: `/music/list`}).then((res) => {
-      console.log(res)
-      if(res) {
+      // console.log(res)
+      if (res) {
         this.setState({list: res.data});
       }
     });
@@ -80,8 +80,7 @@ class List extends React.Component<Props, State> {
           <p>home page</p>
           <Ul>
           {
-            list.map((item: Item, index) => (<Li key={index}>{index + 1}. {item.name}</Li>))
-          }
+            list.map((item: Item, index) => (<Li key={index}>{index + 1}. {item.name}</Li>))}
           </Ul>
         </StyleBody>
         <Bottom>

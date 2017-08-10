@@ -1,7 +1,7 @@
-import * as React from 'react'
-import styled from 'styled-components'
-import {  } from './styled'
-import BS from './config/BASESTYLE'
+import * as React from 'react';
+import styled from 'styled-components';
+import {  } from './styled';
+import BS from './config/BASESTYLE';
 
 const StyleFooter = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ const StyleFooter = styled.div`
       color: ${BS.font_s};
     }
   }
-`
+`;
 
 interface Props {
 
@@ -30,8 +30,10 @@ interface Props {
 
 const Footer = (props: Props) => {
   return (
-      <StyleFooter>YOUZHEJ [ <a href="https://github.com/YouzheJ/music-back" target="_blank"> https://github.com/YouzheJ/music-back </a> ]</StyleFooter>
-    )
-}
+      <StyleFooter>YOUZHEJ [ 
+        <a href="https://github.com/YouzheJ/music-back" target="_blank"> https://github.com/YouzheJ/music-back </a> 
+      ]</StyleFooter>
+    );
+};
 
 export default Footer;

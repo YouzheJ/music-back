@@ -1,19 +1,19 @@
-import * as React from 'react'
-import styled from 'styled-components'
-import { Button, Input, Icon } from './styled'
-import BS from './config/BASESTYLE'
-import Header from './Header'
-import Footer from './Footer'
+import * as React from 'react';
+import styled from 'styled-components';
+import { Button, Input, Icon } from './styled';
+import BS from './config/BASESTYLE';
+import Header from './Header';
+import Footer from './Footer';
 
 // import logo from './logo.svg'
-import './styles/App.css'
+import './styles/App.css';
 
 const StyleAdd = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
-`
+`;
 
 const Body = styled.div`
   display: flex;
@@ -22,13 +22,13 @@ const Body = styled.div`
   background: ${BS.bg1};
   overflow: hidden;
   overflow-y: auto;
-`
+`;
 
 const Title = styled.div`
   padding: 20px 30px;
   font-size: 20px;
   color: ${BS.gray};
-`
+`;
 
 const Content = styled.div`
   display: flex;
@@ -56,11 +56,11 @@ const Content = styled.div`
   @media screen and (min-width: 1800px) {
       min-width: 80%;
   }
-`
+`;
 
 const ContentBox = styled.div`
   flex: 1;
-`
+`;
 
 const Block = styled.div`
   display: flex;
@@ -68,11 +68,11 @@ const Block = styled.div`
   background: #fff;
   margin: 10px;
   min-width: 250px;
-`
+`;
 
 const Item = styled.div`
   padding: 10px 20px;
-`
+`;
 
 const SubTitle = styled.div`
   font-size: 18px;
@@ -80,7 +80,7 @@ const SubTitle = styled.div`
   border-bottom: 1px solid #f80;
   padding: 10px 0;
   margin: 0 20px 10px;
-`
+`;
 
 const Span = styled.span`
   display: inline-block;
@@ -88,12 +88,12 @@ const Span = styled.span`
   height: 30px;
   line-height: 30px;
   color: ${BS.blue_d_hover}
-`
+`;
 
 const StyleInput = styled(Input)`
   width: 250px;
   background: #fefefe;
-`
+`;
 
 const AddButton = styled.span`
   display: inline-block;
@@ -113,9 +113,9 @@ const AddButton = styled.span`
     border-color: #fff;
     box-shadow: 0 0 5px ${BS.shadow};
   }
-`
+`;
 
-const MoreButton = AddButton.extend``
+const MoreButton = AddButton.extend``;
 
 const UploadButton = AddButton.extend`
   display: block;
@@ -134,46 +134,46 @@ const UploadButton = AddButton.extend`
     border-color: #fff;
     box-shadow: 4px 6px 10px ${BS.shadow};
   }
-`
+`;
 
-const UploadButton_s = UploadButton.extend`
+const UploadButtonS = UploadButton.extend`
   margin: -10px auto 10px;
   transform: scale(1.5, 1.5);
 
   &: hover {
     transform:scale(1.5, 1.5);
   }
-`
+`;
 
-const Button_s = Button.extend`
+const ButtonS = Button.extend`
   color: #fff;
   background: ${BS.blue_d};
 
   &: hover {
     background: ${BS.blue_d_hover};
   }
-`
+`;
 
-const Button_c = Button.extend``
+const ButtonC = Button.extend``;
 
 const ButtonGroup = Item.extend`
   display: flex;
   justify-content: space-around;
-`
+`;
 
 const Bottom = styled.div`
   margin: 20px 0;
   background: #f9f9f9;
   border-top: 1px solid ${BS.blue_s};
   padding-top: 10px;
-`
+`;
 
-const ButtonGroup_bottom = ButtonGroup.extend`
+const ButtonGroupBottom = ButtonGroup.extend`
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
   align-self: flex-end;
-`
+`;
 
 /*{
   name: String,
@@ -203,16 +203,16 @@ interface State {
   show: object;
 }
 
-declare module JSX {  
-  interface ElementAttributesProperty {
-    props; // 指定使用哪个属性名称
-  }
-}
+// declare module JSX {  
+//   interface ElementAttributesProperty {
+//     props; // 指定使用哪个属性名称
+//   }
+// }
 
 class Add extends React.Component<Props, State> {
   public state: State;  
   constructor(props: Props) {
-    super(props)
+    super(props);
     this.state = {
       type: 'add',
       show: { // 部分颜色的显示隐藏
@@ -220,15 +220,15 @@ class Add extends React.Component<Props, State> {
         sources: false,
         detail: false,
       },
-    }
+    };
   }
   public render() {
     const { type } = this.state;
     return (
       <StyleAdd>
-        <Header add={true}></Header>
+        <Header add={true}/>
         <Body>
-          <Title>{type == 'add' ? 'ADD' : 'EDIT'} MUSIC</Title>
+          <Title>{type === 'add' ? 'ADD' : 'EDIT'} MUSIC</Title>
           <ContentBox>
             <Content>
               <Block>
@@ -240,7 +240,7 @@ class Add extends React.Component<Props, State> {
                 <Item>
                   <Span>ALIAS: </Span>
                   <AddButton>
-                    <Icon name='icon-add'></Icon>
+                    <Icon name="icon-add"/>
                   </AddButton>
                   {/* <StyleInput/> */}
                 </Item>
@@ -251,14 +251,14 @@ class Add extends React.Component<Props, State> {
                 <Item>
                   <Span>IMAGES: </Span>
                   <MoreButton>
-                    <Icon name='icon-more'></Icon>
+                    <Icon name="icon-more"/>
                   </MoreButton>
                   {/* <StyleInput/> */}
                 </Item>
                 <Item>
                   <Span>SOURCE: </Span>
                   <MoreButton>
-                    <Icon name='icon-more'></Icon>
+                    <Icon name="icon-more"/>
                   </MoreButton>
                   {/* <StyleInput/> */}
                 </Item>
@@ -268,14 +268,14 @@ class Add extends React.Component<Props, State> {
                 <Item>
                   <Span>COVER L: </Span>
                   <UploadButton>
-                    <Icon name='icon-upload'></Icon>
+                    <Icon name="icon-upload"/>
                   </UploadButton>
                   {/* <StyleInput/> */}
                 </Item>
                 <Item>
                   <Span>COVER S: </Span>
                   <UploadButton>
-                    <Icon name='icon-upload'></Icon>
+                    <Icon name="icon-upload"/>
                   </UploadButton>  
                   {/* <StyleInput/> */}
                 </Item>
@@ -285,7 +285,7 @@ class Add extends React.Component<Props, State> {
                 <Item>
                   <Span>QUALITY: </Span>
                   <AddButton>
-                    <Icon name='icon-add'></Icon>
+                    <Icon name="icon-add"/>
                   </AddButton>
                   {/* <StyleInput/> */}
                 </Item>
@@ -298,9 +298,9 @@ class Add extends React.Component<Props, State> {
                 </Item>
                 <Item>
                   <Span>LINK: </Span>
-                  <UploadButton_s>
-                    <Icon name='icon-upload'></Icon>
-                  </UploadButton_s>
+                  <UploadButtonS>
+                    <Icon name="icon-upload"/>
+                  </UploadButtonS>
                   {/* <StyleInput/> */}
                 </Item>
                 <Item>
@@ -317,28 +317,24 @@ class Add extends React.Component<Props, State> {
                 </Item>
                 <Item>
                   <ButtonGroup>
-                    <Button_s>ADD</Button_s>
-                    <Button_c>CANCEL</Button_c>
+                    <ButtonS>ADD</ButtonS>
+                    <ButtonC>CANCEL</ButtonC>
                   </ButtonGroup>
                 </Item>
               </Block>
             </Content>
           </ContentBox>
           <Bottom>
-            <ButtonGroup_bottom>
-              <Button_s>ADD</Button_s>
-              <Button_c>CANCEL</Button_c>
-            </ButtonGroup_bottom> 
+            <ButtonGroupBottom>
+              <ButtonS>ADD</ButtonS>
+              <ButtonC>CANCEL</ButtonC>
+            </ButtonGroupBottom> 
           </Bottom>
         </Body>
-        <Footer></Footer>
+        <Footer/>
       </StyleAdd>
     );
   }
-}
-
-Add.PropTypes = {
-  show: PropTypes.object,
 }
 
 export default Add;

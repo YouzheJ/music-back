@@ -1,24 +1,24 @@
 // 公用样式的组件
-import * as React from 'react'
-import styled from 'styled-components'
-import BS from './config/BASESTYLE'
-import { Link } from 'react-router-dom'
+import * as React from 'react';
+import styled from 'styled-components';
+import BS from './config/BASESTYLE';
+import { Link } from 'react-router-dom';
 
 export const Header = styled.div`
   display: flex;
   justify-content: center;
   background: ${BS.bg}
-`
+`;
 
 export const Ul = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 20px;
-`
+`;
 
 export const Li = styled.div`
   display: flex;
-`
+`;
 
 export const Button = styled.div`
   display: flex;
@@ -40,12 +40,12 @@ export const Button = styled.div`
     background: ${BS.bg2};
     box-shadow: 5px 10px 20px ${BS.shadow};
   }
-`
+`;
 
 export const ButtonFull = Button.extend`
   width: 80%;
   background: #3d8;
-`
+`;
 
 export const StyleLink = styled(Link)`
   color: #fff;
@@ -53,7 +53,7 @@ export const StyleLink = styled(Link)`
   text-decoration: none;
   width: 100%;
   text-align: center;
-`
+`;
 
 export const Input = styled.input`
   padding: 0 0 0 10px;
@@ -69,11 +69,11 @@ export const Input = styled.input`
   &: focus, &: hover {
     outline: ${BS.blue_s} outset thin;
   }
-`
+`;
 
 interface Props {
   name: string;
 }
 
 export let Icon = (props: Props) => 
-  (<i className={`icon iconfont ${props.name}`}></i>)
+  (<i className={`icon iconfont ${props.name}`}/>);
