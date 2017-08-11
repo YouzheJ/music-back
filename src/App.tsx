@@ -4,7 +4,6 @@ import { Button, StyleLink } from './styled';
 import BS from './config/BASESTYLE';
 import Header from './Header';
 
-// import logo from './logo.svg';
 import './styles/App.css';
 
 const StyleApp = styled.div`
@@ -94,7 +93,7 @@ class App extends React.Component<{}, {}> {
     document.addEventListener('touchmove', function (e: any) {
         e.preventDefault();
     });
-    var c: any = document.getElementById('tri-curve'),
+    let c: any = document.getElementById('tri-curve'),
         x = c.getContext('2d'),
         pr = window.devicePixelRatio || 1,
         w = window.innerWidth,
@@ -105,6 +104,7 @@ class App extends React.Component<{}, {}> {
         r = 0,
         u = m.PI * 2,
         v = m.cos,
+        // p = (n: number) => m.pow(2, n),
         z = m.random;
     c.width = w * pr;
     c.height = h * pr;
@@ -126,6 +126,7 @@ class App extends React.Component<{}, {}> {
         r -= u / -50;
         x.fillStyle = '#' + 
           (v(r) * 127 + 128 << 16 | v(r + u / 3) * 127 + 128 << 8 | v(r + u / 3 * 2) * 127 + 128).toString(16);
+          // ((v(r) * 127 + 128) * p(16) | (v(r + u / 3) * 127 + 128) * p(8) | v(r + u / 3 * 2) * 127 + 128).toString(16);
         x.fill();
         q[0] = q[1];
         q[1] = {x: k, y: n};
