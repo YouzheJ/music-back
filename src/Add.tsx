@@ -4,9 +4,7 @@ import { Button, Input, Icon } from './styled';
 import BS from './config/BASESTYLE';
 import Header from './Header';
 import Footer from './Footer';
-
-// import logo from './logo.svg'
-import './styles/App.css';
+import * as Immutable from 'immutable'
 
 const StyleAdd = styled.div`
   display: flex;
@@ -108,7 +106,8 @@ const AddButton = styled.span`
   transition: all 1s ease;
 
   &: hover {
-    transform: rotate(360deg) scale(1.2, 1.2);
+    transform: scale(1.2, 1.2);
+    // transform: rotate(360deg) scale(1.2, 1.2);
     color: ${BS.blue_d_hover};
     border-color: #fff;
     box-shadow: 0 0 5px ${BS.shadow};
@@ -198,9 +197,15 @@ interface Props {
 
 }
 
+interface Show {
+  images: boolean;
+  sources: boolean;
+  detail: boolean;
+}
+
 interface State {
   type: string;
-  show: object;
+  show: Show;
 }
 
 // declare module JSX {  
@@ -222,8 +227,21 @@ class Add extends React.Component<Props, State> {
       },
     };
   }
+  handleShowBox = (type: string, e: any) => {
+    let $$show = Immutable.fromJS(this.state.show), $$show2;
+    switch(type) {
+      case 'img': $$show2 = $$show.set('images', !this.state.show.images); break;
+      case 'src': $$show2 = $$show.set('sources', !this.state.show.sources); break;
+      case 'dtl': $$show2 = $$show.set('detail', !this.state.show.detail); break;
+      default:;
+    }
+    // console.log($$show2.get('images'));
+    this.setState({show: $$show2.toJS()});
+  }
   public render() {
-    const { type } = this.state;
+    // console.log('render Add');
+    const { type, show } = this.state;
+    const { images, sources, detail } = show;
     return (
       <StyleAdd>
         <Header add={true}/>
@@ -250,20 +268,20 @@ class Add extends React.Component<Props, State> {
                 </Item>
                 <Item>
                   <Span>IMAGES: </Span>
-                  <MoreButton>
-                    <Icon name="icon-more"/>
+                  <MoreButton onClick={this.handleShowBox.bind(this, 'img')}>
+                    <Icon name={`icon-${images ? 'back' : 'more'}`}/>
                   </MoreButton>
                   {/* <StyleInput/> */}
                 </Item>
                 <Item>
                   <Span>SOURCE: </Span>
-                  <MoreButton>
-                    <Icon name="icon-more"/>
+                  <MoreButton onClick={this.handleShowBox.bind(this, 'src')}>
+                    <Icon name={`icon-${sources ? 'back' : 'more'}`}/>
                   </MoreButton>
                   {/* <StyleInput/> */}
                 </Item>
               </Block>
-              <Block>
+              {images ? <Block>
                 <SubTitle>IMAGES</SubTitle>
                 <Item>
                   <Span>COVER L: </Span>
@@ -279,18 +297,18 @@ class Add extends React.Component<Props, State> {
                   </UploadButton>  
                   {/* <StyleInput/> */}
                 </Item>
-              </Block>
-              <Block>
+              </Block> : ''}
+              {sources ? <Block>
                 <SubTitle>SOURCE</SubTitle>
                 <Item>
                   <Span>QUALITY: </Span>
-                  <AddButton>
+                  <AddButton onClick={this.handleShowBox.bind(this, 'dtl')}>
                     <Icon name="icon-add"/>
                   </AddButton>
                   {/* <StyleInput/> */}
                 </Item>
-              </Block>
-              <Block>
+              </Block> : ''}
+              {detail ? <Block>
                 <SubTitle>DETAILS</SubTitle>
                 <Item>
                   <Span>SOURCE: </Span>
@@ -321,7 +339,7 @@ class Add extends React.Component<Props, State> {
                     <ButtonC>CANCEL</ButtonC>
                   </ButtonGroup>
                 </Item>
-              </Block>
+              </Block> : ''}
             </Content>
           </ContentBox>
           <Bottom>

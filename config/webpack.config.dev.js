@@ -11,6 +11,8 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
+var createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -20,6 +22,9 @@ const publicPath = '/';
 const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
+
+// sytle-components typescript plugin
+var styledComponentsTransformer = createStyledComponentsTransformer();
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
@@ -168,6 +173,9 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         include: paths.appSrc,
         loader: require.resolve('ts-loader'),
+        options: {
+          getCustomTransformers: () => ({ before: [styledComponentsTransformer] })
+        }
       },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
