@@ -1,10 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Button, Input, Icon } from './styled';
+import { Button, Input, UploadInput, Icon } from './styled';
 import BS from './config/BASESTYLE';
 import Header from './Header';
 import Footer from './Footer';
 import * as Immutable from 'immutable'
+import fetchs from './scripts/fetchs'
 
 const StyleAdd = styled.div`
   display: flex;
@@ -221,7 +222,7 @@ class Add extends React.Component<Props, State> {
     this.state = {
       type: 'add',
       show: { // 部分颜色的显示隐藏
-        images: false,
+        images: true,
         sources: false,
         detail: false,
       },
@@ -237,6 +238,23 @@ class Add extends React.Component<Props, State> {
     }
     // console.log($$show2.get('images'));
     this.setState({show: $$show2.toJS()});
+  }
+  handleChangeImg = (type: string, e: any): any => {
+    let file = e.target.files[0];
+    if(file) {
+      if(file.size > 1024 * 1024 * 20) { // 大于20m
+        alert('图片大小不能超过20m');
+        return false;
+      }
+      // let URL = (window as any).URL || (window as any).webkitURL;
+      // let imgURL = URL.createObjectURL(file);
+
+      let formData = new FormData();
+      formData.append(file.name, file);
+
+      let result = fetchs({url: '/music/upload', method: 'post'});
+      console.log(result);
+    }
   }
   public render() {
     // console.log('render Add');
@@ -287,6 +305,7 @@ class Add extends React.Component<Props, State> {
                   <Span>COVER L: </Span>
                   <UploadButton>
                     <Icon name="icon-upload"/>
+                    <UploadInput onChange={this.handleChangeImg.bind(this, 'l')}/>
                   </UploadButton>
                   {/* <StyleInput/> */}
                 </Item>
@@ -294,6 +313,7 @@ class Add extends React.Component<Props, State> {
                   <Span>COVER S: </Span>
                   <UploadButton>
                     <Icon name="icon-upload"/>
+                    <UploadInput onChange={this.handleChangeImg.bind(this, 's')}/>
                   </UploadButton>  
                   {/* <StyleInput/> */}
                 </Item>

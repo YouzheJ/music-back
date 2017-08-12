@@ -71,9 +71,34 @@ export const Input = styled.input`
   }
 `;
 
+const StyleUplodInput = styled.label`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  // opacity: 0;
+  cursor: pointer;
+  overflow: hidden;
+
+  input {
+    width: 0;
+    height: 0;
+    // opacity: 0;
+    position: absolute;
+    top: -100%;
+    left: 0;
+  }
+`
+
 interface Props {
   name: string;
 }
 
 export let Icon = (props: Props) => 
   (<i className={`icon iconfont ${props.name}`}/>);
+
+  export const UploadInput = (props: any) => 
+    (<StyleUplodInput>
+      <input type="file" {...props}/>
+    </StyleUplodInput>)
