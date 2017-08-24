@@ -79,6 +79,7 @@ const Header = (props: Props): any => {
             <StyleLinkM to={{pathname: '/play', state: {name: name ? name : ''}}} data-home={home}>play</StyleLinkM>
           </Item>}
           {!help && <Item><StyleLinkM to={'/help'} data-home={home}>help</StyleLinkM></Item>}
+          <Item><StyleLinkM to={'/demo'} data-home={home}>demo</StyleLinkM></Item>
         </List>
       </StyleHeader>
     );

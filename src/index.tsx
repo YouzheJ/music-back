@@ -4,6 +4,7 @@ import './styles/index.css';
 import App from './App';
 import List from './List';
 import Add from './Add';
+import Demo from './Demo';
 import { 
   BrowserRouter as Router,
   Route,
@@ -31,6 +32,7 @@ ReactDOM.render(
        <Route exact={true} path="/" component={App}/>
       <Route path="/list" component={List}/>
       <Route path="/add" component={Add}/>
+      <Route path="/demo" component={Demo}/>
       <Route path="/edit/:name" component={Add}/>
       <Route path="/play/:name" component={Add}/> 
     </div>

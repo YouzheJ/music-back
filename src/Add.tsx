@@ -314,7 +314,7 @@ class Add extends React.Component<Props, State> {
                   <UploadButton>
                     <Icon name="icon-upload"/>
                     <UploadInput onChange={this.handleChangeImg.bind(this, 's')}/>
-                  </UploadButton>  
+                  </UploadButton>
                   {/* <StyleInput/> */}
                 </Item>
               </Block> : ''}
