@@ -136,6 +136,24 @@ const UploadButton = AddButton.extend`
   }
 `;
 
+const CoverImgBox = styled.div`
+  width: 80px;
+  height: 80px;
+  border: 1px solid ${BS.border_s};
+  background: #fff;
+
+  img {
+    width: 100%;
+    height: 100%;
+    vertical-align: center;
+    transition: all .3s ease;
+
+    &: hover {
+      transform: scale(3, 3);
+    }
+  }
+`
+
 const UploadButtonS = UploadButton.extend`
   margin: -10px auto 10px;
   transform: scale(1.5, 1.5);
@@ -203,10 +221,14 @@ interface Show {
   sources: boolean;
   detail: boolean;
 }
-
+interface Data {
+  imgL: string;  // 大图
+  imgS: string;  // 小图
+}
 interface State {
   type: string;
   show: Show;
+  data: Data;
 }
 
 // declare module JSX {  
@@ -226,6 +248,10 @@ class Add extends React.Component<Props, State> {
         sources: false,
         detail: false,
       },
+      data: {
+        imgL: '',
+        imgS: '',
+      }
     };
   }
   handleShowBox = (type: string, e: any) => {
@@ -239,27 +265,28 @@ class Add extends React.Component<Props, State> {
     // console.log($$show2.get('images'));
     this.setState({show: $$show2.toJS()});
   }
-  handleChangeImg = (type: string, e: any): any => {
+  handleChangeImg = async (type: string, e: any): Promise<any> => {
     let file = e.target.files[0];
     if(file) {
       if(file.size > 1024 * 1024 * 20) { // 大于20m
         alert('图片大小不能超过20m');
         return false;
       }
-      // let URL = (window as any).URL || (window as any).webkitURL;
-      // let imgURL = URL.createObjectURL(file);
-
       let formData = new FormData();
-      formData.append(file.name, file);
+      formData.append('file', file);
 
-      let result = fetchs({url: '/music/upload', method: 'post'});
-      console.log(result);
+      let result = await fetchs({url: '/music/upload', method: 'post', body: formData});
+      // console.log(result);
+      if(result && result.success) {
+        this.setState({data: Object.assign({}, this.state.data, {imgL: result.url})});
+      } 
     }
   }
   public render() {
     // console.log('render Add');
-    const { type, show } = this.state;
+    const { type, show, data } = this.state;
     const { images, sources, detail } = show;
+    const { imgL } = data;
     return (
       <StyleAdd>
         <Header add={true}/>
@@ -303,10 +330,13 @@ class Add extends React.Component<Props, State> {
                 <SubTitle>IMAGES</SubTitle>
                 <Item>
                   <Span>COVER L: </Span>
-                  <UploadButton>
+                  {imgL && <CoverImgBox>
+                    <img src={imgL} alt=""/>
+                  </CoverImgBox>}
+                  {!imgL && <UploadButton>
                     <Icon name="icon-upload"/>
                     <UploadInput onChange={this.handleChangeImg.bind(this, 'l')}/>
-                  </UploadButton>
+                  </UploadButton>}
                   {/* <StyleInput/> */}
                 </Item>
                 <Item>
